@@ -130,6 +130,30 @@ async def short(chat_id, link):
             shorten_urls += f"\n**Git.io :-** {url}"
         except Exception as error:
             print(f"Git.io error :- {error}")
+    # PowerLinkz shorten
+
+    if POWER_API and await db.allow_domain(chat_id, "powerlinkz.in"):
+
+        try:
+
+            api_url = "https://powerlinkz.in/member/tools/api"
+
+            params = {'api': POWER_API, 'url': link}
+
+            async with aiohttp.ClientSession() as session:
+
+                async with session.get(api_url, params=params, raise_for_status=True) as response:
+
+                    data = await response.json()
+
+                    url = data["shortenedUrl"]
+
+                    shorten_urls += f"\n**go.powerlinkz.in :-** {url}"
+
+        except Exception as error:
+
+            print(f"powerLink error :- {error}")
+
     
     # Is.gd shorten 
     if await db.allow_domain(chat_id, "is.gd"):
