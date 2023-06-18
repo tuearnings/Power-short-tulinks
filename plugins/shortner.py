@@ -16,7 +16,7 @@ OWLY_API = os.environ.get("OWLY_API", None)
 BUTTONS = InlineKeyboardMarkup(
     [
         [
-        InlineKeyboardButton(text='⚙ Join Updates Channel ⚙', url='https://telegram.me/FayasNoushad')
+        InlineKeyboardButton(text='⚙ Join Updates Channel ⚙', url='https://t.me/tulinks_official')
         ]
     ]
 )
@@ -130,15 +130,15 @@ async def short(chat_id, link):
             shorten_urls += f"\n**Git.io :-** {url}"
         except Exception as error:
             print(f"Git.io error :- {error}")
-    # PowerLinkz shorten
+    # tulinks shorten
 
-    if POWER_API and await db.allow_domain(chat_id, "powerlinkz.in"):
+    if TULINKS_API and await db.allow_domain(chat_id, "tulinks.one"):
 
         try:
 
-            api_url = "https://powerlinkz.in/member/tools/api"
+            api_url = "https://tulinks.one/member/tools/api"
 
-            params = {'api': POWER_API, 'url': link}
+            params = {'api': TULINKS_API, 'url': link}
 
             async with aiohttp.ClientSession() as session:
 
@@ -148,11 +148,11 @@ async def short(chat_id, link):
 
                     url = data["shortenedUrl"]
 
-                    shorten_urls += f"\n**go.powerlinkz.in :-** {url}"
+                    shorten_urls += f"\n**go.tulinks.one :-** {url}"
 
         except Exception as error:
 
-            print(f"powerLink error :- {error}")
+            print(f"tulinks error :- {error}")
 
     
     # Is.gd shorten 
